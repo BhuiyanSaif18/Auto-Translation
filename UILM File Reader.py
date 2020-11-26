@@ -4,7 +4,7 @@ import xlsxwriter
 import xlrd 
 
 #Localization file path
-path = 'F:\Auto-Translation\i18n'
+path = 'C:\\Users\\saiful.bhuiya\\Desktop\\i18n'
 
 #Excel File name
 workbook = xlsxwriter.Workbook('AllTranslationData.xlsx') 
@@ -33,15 +33,15 @@ def openFile(filePath):
 
 for file in files:
 	#print(file)
-	f = 'F:\\Auto-Translation\\i18n\\'+ file+'\\en.json'
+	f = path + '\\'+ file+'\\en.json'
 	print(os.stat(f).st_size)
-	if(os.stat(file).st_size != 0):
-		val = openFile(file)
+	if(os.stat(f).st_size != 0):
+		val = openFile(f)
 	leafValue(val)
 
 
 for i,j in loadedLocalizedKeyData.items():
-    data = data +([i,loadedLocalizedKeyData[i],"",""],)
+    data = data +([i,loadedLocalizedKeyData[i],"","", ""],)
 
 
 # Start from the first cell. Rows and 
@@ -50,11 +50,12 @@ row = 0
 col = 0
   
 # Iterate over the data and write it out row by row. 
-for key, en,de,fr in (data): 
+for key, en,de,fr,it in (data): 
     worksheet.write(row, col, key) 
     worksheet.write(row, col + 1, en)
     worksheet.write(row, col + 2, de)
     worksheet.write(row, col + 3, fr) 
+    worksheet.write(row, col + 3, it) 
     row += 1
   
 workbook.close() 
